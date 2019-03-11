@@ -11,6 +11,15 @@ var projectsRouter = require('./routes/api');
 
 var app = express();
 
+// Add this in order to avoid cors issues (web browser security)
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header('Access-Control-Allow-Methods', '*');
+  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  next();
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
