@@ -4,6 +4,11 @@ var request = require('request');
 const projectModel = require('../models/project');
 
 /* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('unauthorized'.toUpperCase());
+});
+
+/* GET users listing. */
 router.get('/capsule/projects', function(req, res, next) {
   projectModel.find((err, projects) => {
     if(err){

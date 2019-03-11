@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const projectModel = require('../models/project');
 
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('unauthorized'.toUpperCase());
+});
+
 // /* GET home page. */
 // router.get('/', function(req, res, next) {
 //
