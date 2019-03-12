@@ -1,10 +1,54 @@
 const express = require('express');
 const router = express.Router();
 const projectModel = require('../models/project');
+const projectslikedModel = require('../models/dbproject');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('unauthorized'.toUpperCase());
+});
+
+
+router.get('/all-projects', function(req, res, next) {
+  // Here, we want to find every movies that we have in our collection movies on mlab
+  projectslikedModel.find(function(error, data) {
+    res.json({result: true, data});
+  });
+});
+
+
+router.post('/like-project', function(req, res, next) {
+  console.log("route ok");
+  console.log(req.body)
+  // Now, we want to save a new movie.
+  var newProject = new projectslikedModel({
+    name: req.body.name,
+    desc: req.body.desc,
+    pic_url: req.body.pic_url,
+    stack_front: req.body.stack_front,
+    stack_back: req.body.stack_back,
+    days_spent: req.body.days_spent,
+    idproject: req.body.idproject
+  });
+  console.log("newproject",newProject)
+  newProject.save(function(error, project) {
+    if(project){
+      console.log("hello", project)
+      res.json({result: true, project});
+    } else {
+      console.log("error", error)
+      res.json({result: false, error});
+    }
+  });
+});
+
+
+router.delete('/like-project/:projectId', function(req, res, next) {
+  // Here we want to use params in order to delete one specific element in our data base
+  projectslikedModel.deleteOne({idproject: req.params.projectId},
+    function(error, response) {
+    res.json({result: true});
+  });
 });
 
 // /* GET home page. */
