@@ -17,14 +17,5 @@ router.get('/capsule/projects', function(req, res, next) {
   })
 });
 
-router.get('/capsule/projects/json', function(req, res, next) {
-  request('http://localhost:3000/api/capsule/projects', (err, request, body) => {
-    body = JSON.parse(body)
-    console.log(body)
-    console.log("/////")
-    console.log(body.projects[0].stack_front[2])
-    res.json(body)
-  })
-});
 
 module.exports = router;
