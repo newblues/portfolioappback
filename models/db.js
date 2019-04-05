@@ -6,7 +6,8 @@ const options = {
    useNewUrlParser: true,
   };
 
-mongoose.connect('mongodb://alexis:azerty1@ds163835.mlab.com:63835/mytechworld',
+  
+mongoose.connect('mongodb://master:master123@ds239903.mlab.com:39903/mytechworldapp',
     options,
     function(err) {
      if (err) {
@@ -18,3 +19,7 @@ mongoose.connect('mongodb://alexis:azerty1@ds163835.mlab.com:63835/mytechworld',
 );
 
 module.exports = mongoose;
+
+
+
+// mongodb://alexis:azerty1@ds163835.mlab.com:63835/mytechworld'
